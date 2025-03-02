@@ -10,13 +10,13 @@ Each student is assigned a personalized [Docker](https://www.docker.com/) networ
   <img src="../img/lab_topology.png" width="400px" height="auto"/>
 </p>
 
-Since all machines are dynamically assigned IP addresses, the IP of your multi-homed container may change. When needed, you can always check the current IP address at:  
+Since all machines are dynamically assigned IP addresses, the IP of your multi-homed container may change. When needed, you can always check the current IP address at **[http://containersinfo.local](http://containersinfo.local).**   
 
-**[http://containersinfo.local](http://containersinfo.local)**   
+> **IMPORTANT:** Your physical machine (laptop) must be connected to the physical LAN via a cable. Connecting via WiFi will not work, and you won't be able to access any containers.
 
 ### Accessing a multi-homed container  
 
-Each multi-homed container runs an SSH server, allowing you to establish a remote session. To log in, use a **username** derived from your name, as shown in the table below:  
+Each multi-homed container runs a Secure Shell (SSH) server, allowing you to establish a remote session. To log into it, use a `username` derived from your name, as shown in the table below:  
 
 | First Name  | Last Name      | `username`              |
 |------------|---------------|-------------------------|
@@ -24,15 +24,15 @@ Each multi-homed container runs an SSH server, allowing you to establish a remot
 | Marko Ivan | Marković      | `markovic_marko_ivan`  |
 | Mirta      | Marić Banje   | `maric_banje_mirta`    |
 
-Your password is embedded in the captured flag: `crypto{th1s_is_y0ur_f1ag_and_passw0rd}`
+Your `password` is embedded in the captured flag: `crypto{th1s_is_y0ur_f1ag_and_passw0rd}`
 
 ## Unlocking the stage: Capture your initial flag
 
-In this initial lab, a special central Docker container emits interesting information on the physical LAN network. You can use this information to reconstruct your initial flag. This flag will grant you access to your personalized network and allow you to progress to the next challenge.
+In this initial lab, a special central Docker container emits interesting information into the physical LAN network. You can use this information to recover your initial flag. The flag will grant you access to your personalized network and allow you to progress to the next challenge.
 
 Since the purpose of these labs is to encourage exploration and independent problem-solving, we will provide only the most essential details. It is up to you to find your own way to solve the lab and discover the flag.
 
-Having captured your first flag, you can confirm its validity by attempting to log into your personalized multi-homed container.
+Having captured your first flag, you can confirm its validity by attempting to log into your personalized multi-homed container using the Secure Shell client `ssh`.
 
 ### Hints for Students:
 
@@ -47,12 +47,7 @@ Having captured your first flag, you can confirm its validity by attempting to l
         port: 1900               # Standard SSDP port
     ```
 
-3. The `ssss` tool in Linux is used to handle secret sharing. All students can access a shared Docker container that hosts this tool. To access it, use Secure Shell tool `ssh` with the following credentials:  
-   - **Username:** `user`  
-   - **Password:** `user`
-
-   You will need the IP address of the `ssss` container, which can be found at:  
-   **[http://containersinfo.local](http://containersinfo.local)**.
+3. The `ssss` tool in Linux is used to handle secret sharing. All students can access a shared Docker container that hosts this tool. To access it, use `ssh` client with the following credentials: `user:user`.
 
 4. Finally, here is a part of the configuration file used by the special container that emits interesting information over the physical LAN:
     ```yaml
