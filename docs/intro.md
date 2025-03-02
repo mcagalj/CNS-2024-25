@@ -34,7 +34,7 @@ Since the purpose of these labs is to encourage exploration and independent prob
 
 Having captured your first flag, you can confirm its validity by attempting to log into your personalized multi-homed container using the Secure Shell client `ssh`.
 
-### Hints for Students:
+### Hints:
 
 1. We are using the Shamir Secret Sharing System to process the initial flag.
 2. Below is a part of a config file used by the special container that emits interesting information to the physical LAN:
