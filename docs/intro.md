@@ -48,13 +48,3 @@ Having captured your first flag, you can confirm its validity by attempting to l
     ```
 
 3. The `ssss` tool in Linux is used to handle secret sharing. All students can access a shared Docker container that hosts this tool. To access it, use `ssh` client with the following credentials: `user:user`.
-
-4. Finally, here is a part of the configuration file used by the special container that emits interesting information over the physical LAN:
-    ```yaml
-    shamir_secret_sharing:
-        shares: 8
-        threshold: 2             # Selected at random
-    broadcast:
-        address: "239.255.15.0"  # UDP broadcast address
-        port: 1900               # Standard SSDP port
-    ```
