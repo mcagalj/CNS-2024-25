@@ -32,6 +32,8 @@ In this initial lab, a special central Docker container emits interesting inform
 
 Since the purpose of these labs is to encourage exploration and independent problem-solving, we will provide only the most essential details. It is up to you to find your own way to solve the lab and discover the flag.
 
+Having captured your first flag, you can confirm its validity by attempting to log into your personalized multi-homed container.
+
 ### Hints for Students:
 
 1. We are using the Shamir Secret Sharing System to process the initial flag.
@@ -45,7 +47,7 @@ Since the purpose of these labs is to encourage exploration and independent prob
         port: 1900               # Standard SSDP port
     ```
 
-3. The `ssss` tool in Linux is used to handle secret sharing. All students can access a shared Docker container that hosts this tool. To access it, use `ssh` with the following credentials:  
+3. The `ssss` tool in Linux is used to handle secret sharing. All students can access a shared Docker container that hosts this tool. To access it, use Secure Shell tool `ssh` with the following credentials:  
    - **Username:** `user`  
    - **Password:** `user`
 
