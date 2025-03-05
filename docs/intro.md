@@ -18,11 +18,11 @@ Since all machines are dynamically assigned IP addresses, the IP of your multi-h
 
 Each multi-homed container runs a Secure Shell (SSH) server, allowing you to establish a remote session. To log into it, use a `username` derived from your name, as shown in the table below:  
 
-| First Name  | Last Name      | `username`              |
-|------------|---------------|-------------------------|
-| Ivana      | Ivić          | `ivic_ivana`           |
-| Marko Ivan | Marković      | `markovic_marko_ivan`  |
-| Mirta      | Marić Banje   | `maric_banje_mirta`    |
+| First Name | Last Name   | `username`            |
+| ---------- | ----------- | --------------------- |
+| Ivana      | Ivić        | `ivic_ivana`          |
+| Marko Ivan | Marković    | `markovic_marko_ivan` |
+| Mirta      | Marić Banje | `maric_banje_mirta`   |
 
 Your `password` is embedded in the captured flag: `crypto{th1s_is_y0ur_f1ag_and_passw0rd}`
 
@@ -47,4 +47,4 @@ Having captured your first flag, you can confirm its validity by attempting to l
         port: 1900               # Standard SSDP port
     ```
 
-3. The `ssss` tool in Linux is used to handle secret sharing. All students can access a shared Docker container that hosts this tool. To access it, use `ssh` client with the following credentials: `user:user`.
+3. The `ssss-combine` tool in Linux is used to handle secret sharing. All students can access a shared Docker container that hosts this tool. To access it, use `ssh` client with the following credentials: `user:user`.
