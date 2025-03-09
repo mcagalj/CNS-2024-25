@@ -24,9 +24,9 @@ The server implements an authenticated REST API service (source code available i
 2. Look carefully at the bearer token in the HTTP Authorization header - it contains more than just access rights.
 3. Lecture slides on ARP poisoning provide theoretical foundation.
 4. Your attacking machine comes with pre-installed tools that will help you:
-   - `ifconfig` - network interface configuration and inspection tool
-   - `dsniff` - collection of tools for network auditing and penetration testing
-   - `tcpdump` - command-line packet analyzer (use `-vvAls0` flags for proper payload decoding)
-   > Linux chained using pipes (`|`) can be particularly useful when filtering decoded `tcpdump` output.
-5. Being multi-homed means your attacking machine has multiple network interfaces. Use `ifconfig` to identify the correct one for capturing/spoofing.
-6. You might find [CyberChef](https://gchq.github.io/CyberChef/) quite useful.
+- `ifconfig` - tool for network interface configuration and inspection
+- `dsniff` - suite of tools for network auditing and penetration testing
+- `tcpdump` - command-line packet analyzer (use `-vvAls0` flags for detailed payload decoding)
+    > Using Linux pipes (`|`) with `grep` tool can be particularly useful for filtering decoded `tcpdump` output.
+1. Being multi-homed means your attacking machine has multiple network interfaces. Use `ifconfig` to identify the correct one for capturing/spoofing.
+2. You might find [CyberChef](https://gchq.github.io/CyberChef/) quite useful.
