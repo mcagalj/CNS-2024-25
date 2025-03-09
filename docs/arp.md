@@ -22,10 +22,11 @@ The server implements an authenticated REST API service (source code available i
 
 1. The source code in the [`code/arp/`](../code/arp/) directory help understanding how the `client` and `server` communicate.
 2. Look carefully at the bearer token in the HTTP Authorization header - it contains more than just access rights.
-3. Lecture slides on ARP poisoning may be useful.
+3. Lecture slides on ARP poisoning provide theoretical foundation.
 4. Your attacking machine comes with pre-installed tools that will help you:
-   - `dsniff` - Collection of tools for network auditing and penetration testing
-   - `tcpdump` - Command-line packet analyzer
-   - `iputils-ping` - Network testing utilities
-   - Linux chained using pipes (`|`) can be particularly useful when filtering `tcpdump` output with tools like `grep`.
-5. You might find [CyberChef](https://gchq.github.io/CyberChef/) quite useful.
+   - `ifconfig` - network interface configuration and inspection tool
+   - `dsniff` - collection of tools for network auditing and penetration testing
+   - `tcpdump` - command-line packet analyzer (use `-vvAls0` flags for proper payload decoding)
+   > Linux chained using pipes (`|`) can be particularly useful when filtering decoded `tcpdump` output.
+5. Being multi-homed means your attacking machine has multiple network interfaces. Use `ifconfig` to identify the correct one for capturing/spoofing.
+6. You might find [CyberChef](https://gchq.github.io/CyberChef/) quite useful.
