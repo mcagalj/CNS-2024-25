@@ -1,0 +1,31 @@
+# Cryptography and Network Security <!-- omit in toc -->
+
+# Lab 2: Man-in-the-middle attack <!-- omit in toc -->
+
+## Introduction
+
+In this lab, we will explore fundamental security threats and vulnerabilities in computer networks. Specifically, we will analyze how compromising the integrity of Address Resolution Protocol (ARP) messages enables an attacker to perform Man in the Middle (MitM) attacks on computers sharing a local area network (LAN, WLAN). By actively manipulating ARP messages, an attacker can intercept and potentially modify communication between network hosts.
+
+## Network Topology
+
+For this lab, you will work with the following network setup:
+
+<p align="center">
+  <img src="../img/client_server_topology.png" width="400px" height="auto"/>
+</p>
+
+## Challenge Description
+
+The server implements an authenticated REST API service (source code available in [`code/arp/`](../code/arp/)). The client application regularly communicates with this service. Your goal is to capture a flag in the format `crypto{th1s_is_y0ur_f1ag}`.
+
+### Hints
+
+1. The source code in the [`code/arp/`](../code/arp/) directory help understanding how the `client` and `server` communicate.
+2. Look carefully at the bearer token in the HTTP Authorization header - it contains more than just access rights.
+3. Lecture slides on ARP poisoning may be useful.
+4. Your attacking machine comes with pre-installed tools that will help you:
+   - `dsniff` - Collection of tools for network auditing and penetration testing
+   - `tcpdump` - Command-line packet analyzer
+   - `iputils-ping` - Network testing utilities
+   - Linux chained using pipes (`|`) can be particularly useful when filtering `tcpdump` output with tools like `grep`.
+5. You might find [CyberChef](https://gchq.github.io/CyberChef/) quite useful.

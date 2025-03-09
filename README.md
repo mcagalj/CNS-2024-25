@@ -11,7 +11,7 @@ Ultimately, you will demonstrate possession of a single **final** flag to earn f
 ## List of planned exercises
 
 - [Lab 1: Setting up the stage](docs/intro.md)
-- [Lab 2: Man-in-the-middle attack]
+- [Lab 2: Man-in-the-middle attack](docs/arp.md)
 - [Lab 3: Weak sessions]
 - [Lab 4: TBA]
 - [Lab 5: TBA]
