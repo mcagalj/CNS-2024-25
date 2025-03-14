@@ -4,7 +4,7 @@
 
 ## Introduction
 
-A Vernam cipher achieves perfect secrecy when:
+A Vernam cipher achieves perfect secrecy (becomes one-time pad) when:
 - The key is truly random
 - The key length equals or exceeds the message length
 - Each encryption uses a new random key
@@ -42,6 +42,6 @@ This models real scenarios where attackers can trick systems into encrypting kno
 
 1. Make sure you understand how the server processes the `flag` (check the source code in [`code/vernam/`](../code/vernam/)). Ask your favorite LLM to briefly explain the relevant parts of the code.      
 2. Try this: `ssh -L 80:server:80 your_name@your_attacker_IP` and `http://localhost/docs`. 
-3. Think carefully what happens when you XOR two or more binary values (A ⊕ B, A ⊕ B ⊕ C).
+3. Think carefully what happens when you XOR two or more binary values (A ⊕ B or A ⊕ B ⊕ C).
 4. **Chosen-Plaintext Attacks (CPA)**.
 5. [CyberChef](https://gchq.github.io/CyberChef/) can be quite useful (in particular blocks `From Hex` and `XOR`).
