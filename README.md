@@ -13,7 +13,7 @@ Ultimately, you will demonstrate possession of a single **final** flag to earn f
 - [Lab 1: Setting up the stage](docs/intro.md)
 - [Lab 2: Man-in-the-middle attack](docs/arp.md)
 - [Lab 3: A thin line between perfect cipher and insecure one](docs/vernam.md)
-- [Lab 4: TBA]
+- [Lab 4: The fallacy of deterministic encryption](docs/deterministic.md)
 - [Lab 5: TBA]
 - [Lab 6: TBA]
 - [Lab 7: TBA]
