@@ -44,7 +44,6 @@ Your task: exploit ECB mode's deterministic nature to recover the flag. The serv
 
 1. Try `ssh -L 80:server:80 your_name@your_attacker_IP` and check the REST API documentation using `http://localhost/docs`
     > IMPORTANT: Understand the details of the REST API endpoints (check with the instructor if in doubt).
-2. Remember: ECB encrypts each block independently
-4. Think about block sizes and alignment
-5. Identical plaintext blocks = identical ciphertext blocks
-6. Consult the source code check the source code in [`code/ecb`](../code/ecb) 
+2. Remember: ECB encrypts each block independently implying `identical plaintext blocks = identical ciphertext blocks`
+3. The `flag` consists of characters from the following set: `abcdefghijklmnopqrstuvwxyz0123456789{}!@#$%^&*`
+4. Consult the source code check the source code in [`code/ecb`](../code/ecb)
