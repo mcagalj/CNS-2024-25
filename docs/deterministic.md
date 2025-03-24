@@ -14,7 +14,7 @@ Electronic Code Book (ECB) mode demonstrates how deterministic encryption can fa
 <img src="../img/ecb.png" alt="ECB encryption" width="400px" height="auto"/>
 <br>
 </p>
-In this exercise, we will see that this encryption method does not ensure message confidentiality (_confidentiality_) even when using a secure cipher (e.g., AES).
+In this exercise, we will see that this encryption method does not ensure message confidentiality even when using a secure cipher (e.g., AES).
 
 <br/>
 <p align="center">
