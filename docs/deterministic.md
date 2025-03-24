@@ -48,4 +48,4 @@ Your task: exploit ECB mode's deterministic nature to recover the flag. The serv
     > IMPORTANT: Understand the details of the REST API endpoints (check with the instructor if in doubt).
 2. Remember: ECB encrypts each block independently implying `identical plaintext blocks = identical ciphertext blocks`
 3. The `flag` consists of characters from the following set: `abcdefghijklmnopqrstuvwxyz0123456789{}!@#$%^&*`
-4. Consult the source code check the source code in [`code/ecb`](../code/ecb)
+4. Consult the source code [`code/ecb`](../code/ecb)
