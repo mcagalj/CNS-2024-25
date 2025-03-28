@@ -1,6 +1,6 @@
 # Cryptography and Network Security <!-- omit in toc -->
 
-# Lab 2: When Deterministic Encryption Fails <!-- omit in toc -->
+# Lab 4: The fallacy of deterministic encryption <!-- omit in toc -->
 
 ## Introduction
 
