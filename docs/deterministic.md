@@ -14,8 +14,10 @@ Electronic Code Book (ECB) mode demonstrates how deterministic encryption can fa
 <img src="../img/ecb.png" alt="ECB encryption" width="400px" height="auto"/>
 <br>
 </p>
-In this exercise, we will see that this encryption method does not ensure message confidentiality (_confidentiality_) even when using a secure cipher (e.g., AES).
 
+In this exercise, we will see that this encryption method does not ensure message confidentiality even when using a secure cipher (e.g., AES).
+
+<br/>
 <br/>
 <p align="center">
 <img src="../img/tux_ecb.png" alt="Deterministic encryption" width="400px" height="auto"/>
@@ -45,5 +47,5 @@ Your task: exploit ECB mode's deterministic nature to recover the flag. The serv
 1. Try `ssh -L 80:server:80 your_name@your_attacker_IP` and check the REST API documentation using `http://localhost/docs`
     > IMPORTANT: Understand the details of the REST API endpoints (check with the instructor if in doubt).
 2. Remember: ECB encrypts each block independently implying `identical plaintext blocks = identical ciphertext blocks`
-3. The `flag` consists of characters from the following set: `abcdefghijklmnopqrstuvwxyz0123456789{}!@#$%^&*`
-4. Consult the source code check the source code in [`code/ecb`](../code/ecb)
+3. The `flag` consists of characters from the following set: `abcdefghijklmnopqrstuvwxyz0123456789{}!@#$%^&*+-`
+4. Consult the source code [`code/ecb`](../code/ecb)
