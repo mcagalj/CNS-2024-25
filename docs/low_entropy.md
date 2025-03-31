@@ -36,7 +36,8 @@ Your task is to exploit the weak entropy in the session management system to gai
 
 1. Check the source code in [`code/low_entropy/`](../code/low_entropy/)
 2. Local port forwarding: `ssh -L 80:server:80 your_name@your_attacker_IP`
-3. Python `requests` package can be handy:
+3. You might find the following useful: https://www.askpython.com/python/built-in-methods/python-bit-functions
+4. Python `requests` package can be handy:
     
     ```python
     import requests
@@ -47,7 +48,7 @@ Your task is to exploit the weak entropy in the session management system to gai
     
     response = requests.get(f"http://server/protected", cookies=cookies)
     ```    
-4. Access to server's REST API is rate-limited with the following config:
+5. Access to server's REST API is rate-limited with the following config:
 
     ```yaml
     rate_limit:
@@ -57,4 +58,4 @@ Your task is to exploit the weak entropy in the session management system to gai
         per_ip: true
         ban_duration_minutes: 1
     ```
-5. Be patient.
+6. Be patient.
