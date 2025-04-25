@@ -25,9 +25,12 @@ In our implementation:
 
 ### Key Benefits
 
-1. **Secure Key Storage**: The encrypted data key can be safely stored alongside the encrypted data since it's protected by the key encryption key.
-2. **Efficient Multi-Key Encryption**: Allows re-encrypting only the data key instead of the entire data when using multiple recipient keys.
-3. **Best of Both Worlds**: Combines the speed and efficiency of symmetric encryption with the key management benefits of asymmetric encryption.
+1. **Protecting data keys**: When you encrypt a data key, you don't have to worry about storing the encrypted data key, because the data key is inherently protected by encryption. You can safely store the encrypted data key alongside the encrypted data.
+
+2. **Encrypting the same data under multiple keys**: Encryption operations can be time consuming, particularly when the data being encrypted are large objects. Instead of re-encrypting raw data multiple times with different keys, you can re-encrypt only the data keys that protect the raw data.
+
+3. **Combining the strengths of multiple algorithms**: In general, symmetric key algorithms are faster and produce smaller ciphertexts than public key algorithms. But public key algorithms provide inherent separation of roles and easier key management. Envelope encryption lets you combine the strengths of each strategy.
+
 
 Source: [AWS KMS Cryptographic Details](https://docs.aws.amazon.com/kms/latest/developerguide/kms-cryptography.html)
 
