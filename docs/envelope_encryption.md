@@ -8,20 +8,23 @@ This lab demonstrates hybrid/envelope encryption, a fundamental cryptographic co
 
 ### What is Envelope Encryption?
 
-Envelope encryption is a cryptographic system that uses two or more keys to secure a message:
-1. A long-term static key (in our case, an RSA key pair)
-2. A per-message key (in our case, an AES key) generated specifically for each message
+Envelope encryption is a cryptographic system that secures messages using two keys:
 
-The envelope is constructed by:
-1. Generating a per-message key (msgKey) for the data
-2. Encrypting the message: ciphertext = Encrypt(msgKey, message)
-3. Encrypting the message key with the long-term key: encKey = Encrypt(k, msgKey)
-4. Combining (encKey, ciphertext) into a single envelope structure
+1. **Long-term Key**: A static RSA key pair, referred to as the Key Encryption Key (KEK).
+2. **Per-message Key**: A unique AES key, known as the Data Encryption Key (DEK), generated for each message.
 
-In our implementation:
-- The per-message key is an AES key (DEK - Data Encryption Key)
-- The long-term static key is an RSA key pair (KEK - Key Encryption Key)
-- The envelope consists of (encrypted_aes_key, iv, ciphertext)
+Construction process:
+1. Generate a random AES key (DEK) for the message.
+2. Encrypt the message using the DEK and an initialization vector (IV), producing the ciphertext.
+3. Encrypt the DEK using the RSA KEK, producing the encrypted DEK (encryptedDEK).
+4. Combine the encrypted DEK, IV, and ciphertext into a single envelope structure: `(encryptedDEK, IV, ciphertext)`.
+
+Here:
+- The DEK (AES key) enables efficient per-message encryption.
+- The KEK (RSA key pair) securely protects the DEK.
+- The envelope format `(encryptedDEK, IV, ciphertext)` ensures secure storage and transmission.
+
+This approach balances security and efficiency by using a unique DEK for each message, safeguarded by a long-term KEK.
 
 ### Key Benefits
 
