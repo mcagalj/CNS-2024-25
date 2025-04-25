@@ -1,6 +1,6 @@
 # Cryptography and Network Security <!-- omit in toc -->
 
-# Lab 6: Envelope Encryption using RSA and AES <!-- omit in toc -->
+# Lab 6: Hybrid/Envelope Encryption using RSA and AES <!-- omit in toc -->
 
 ## Introduction
 
@@ -36,7 +36,7 @@ Source: [AWS KMS Cryptographic Details](https://docs.aws.amazon.com/kms/latest/d
 The network topology for this lab is given in the image below.
 
 <p align="center">
-  <img src="../img/envelop_encryption_topology.png" width="400px" height="auto"/>
+  <img src="../img/envelope_encryption_topology.png" width="400px" height="auto"/>
 </p>
 
 ## Challenge Description
@@ -64,7 +64,7 @@ The challenge involves:
 
 ## Hints
 
-1. Check relevant parts of the source code used to prepare this challenge: [`code/envelop_encryption/`](../code/envelop_encryption/)
+1. Check relevant parts of the source code used to prepare this challenge: [`code/envelope_encryption/`](../code/envelope_encryption/)
 2. Python [cryptography library](https://cryptography.io) can help with both RSA key reconstruction and decryption. In particular, the following code snippet is quite relevant:
 
     ```python

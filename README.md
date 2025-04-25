@@ -15,7 +15,7 @@ Ultimately, you will demonstrate possession of a single **final** flag to earn f
 - [Lab 3: A thin line between perfect cipher and insecure one](docs/vernam.md)
 - [Lab 4: The fallacy of deterministic encryption](docs/deterministic.md)
 - [Lab 5: How weak secrets defeat strong encryption](docs/low_entropy.md)
-- [Lab 6: Hybrid/envelop encryption using RSA and AES](docs/envelop_encryption.md)
+- [Lab 6: Hybrid/envelope encryption using RSA and AES](docs/envelop_encryption.md)
 - [Lab 7: TBA]
 - [Lab 8: TBA]
 - [Lab 9: TBA]
