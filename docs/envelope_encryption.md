@@ -47,17 +47,16 @@ The network topology for this lab is given in the image below.
 
 ## Challenge Description
 
-Your task is to recover a `flag` that has been secured using hybrid/envelope encryption. You will be provided with:
+Your task is to recover a `flag` that has been secured using hybrid/envelope encryption. You will be provided with a challenge file (`challenge.txt` located in your home directory) containing:
 
-1. A challenge file (`challenge.txt` located in your home directory) containing:
-   - RSA public modulus (n)
-   - Public exponent (e)
-   - One prime factor (p) of the RSA modulus
-   - Encrypted AES key
-   - Initialization vector (IV)
-   - Ciphertext
+- RSA public exponent (e)
+- One prime factor (p) of the RSA modulus
+- Encrypted AES key
+- Initialization vector (IV)
+- Ciphertext
 
 The challenge involves:
+
 1. Reconstructing the RSA private key:
    - You have one prime factor (p)
    - Calculate the second prime factor (q) using n
