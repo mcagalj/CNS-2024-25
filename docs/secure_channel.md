@@ -54,13 +54,14 @@ Implement the protocol above to discover your `flag`. The challenge in phases: `
 ## Hint
 
 1. `ssh -L 80:server:80 your_name@your_attacker_IP` and check detailed REST API documentation using `http://localhost/docs`
-2. Pay attention to encoding of messages exchanged with the server.
-3. We use Python [cryptography library](https://cryptography.io) for all crypto operations; here you can find details of [asymmetric crypto primitives](https://cryptography.io/en/latest/hazmat/primitives/asymmetric/).
-4. Some public key parameters:
+2. Check relevant parts of the source code used to prepare this challenge: [`code/secure_channel/`](../code/secure_channel/)
+3. Pay attention to encoding of messages exchanged with the server.
+4. We use Python [cryptography library](https://cryptography.io) for all crypto operations; here you can find details of [asymmetric crypto primitives](https://cryptography.io/en/latest/hazmat/primitives/asymmetric/).
+5. Some public key parameters:
     - RSA and DH key size is 2048 bit
     - RSA public exponent is 65537
     - DH group generator is 2
-5. To derive the final decryption key we use the following [_hash-based key derivation function_](https://cryptography.io/en/latest/hazmat/primitives/key-derivation-functions/?highlight=hkdf)
+6. To derive the final decryption key we use the following [_hash-based key derivation function_](https://cryptography.io/en/latest/hazmat/primitives/key-derivation-functions/?highlight=hkdf)
     ```python
     key = HKDF(
         algorithm=hashes.SHA256(),
