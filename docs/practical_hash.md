@@ -35,8 +35,8 @@ In this lab, you will complete the following tasks:
 1. **JWT Token Creation**: Create and sign a JWT token with the required claims to authenticate with the server. You'll need to:
    - Include standard claims: expiration time (exp), issue time (iat), and issuer (iss)
    - Add custom claims: role="student" and your username (e.g., doe_john)
-   - Sign the token using HMAC-SHA256 (HS256) algorithm
-   - As a secret you should use the `flag` from the last lab (the same one used to login to the `attacker` host)
+   - Sign the token using HMAC-SHA256 (HS256) algorithm; recall HMAC requires a secret
+   - As a secret to sign JWT you will use the `flag` from the last lab (the same one used to login to the `attacker` host)
    - Required claims (issue and expiration times obviously should be adjusted, as well as the username):
 
         ```json
