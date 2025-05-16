@@ -17,6 +17,6 @@ Ultimately, you will demonstrate possession of a single **final** flag to earn f
 - [Lab 5: How weak secrets defeat strong encryption](docs/low_entropy.md)
 - [Lab 6: Hybrid/envelope encryption using RSA and AES](docs/envelope_encryption.md)
 - [Lab 7: Establishing secure channel using asymmetric cryptography](docs/secure_channel.md)
-- [Lab 8: TBA]
+- [Lab 8: Some practical uses of cryptographic hash functions](docs/practical_hash.md)
 - [Lab 9: TBA]
 - [Lab 10: TBA]
