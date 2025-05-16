@@ -55,7 +55,7 @@ In this lab, you will complete the following tasks:
 
 2. **Cryptocurrency Mining Simulation**: Implement a proof-of-work mining algorithm:
    - Request a challenge from the server (read path `/challenge`)
-   - Find a nonce (a value) that, when concatenated with the challenge, produces a SHA-256 hash starting with the required number of leading zeros (7 in hexadecimal,corresponding to 28 leading zeros in binary)
+   - Find a nonce (a value) that, when concatenated with the challenge, produces a SHA-256 hash starting with the required number of leading zeros (7 in hexadecimal, corresponding to 28 leading zeros in binary)
    - This part may be slow, so be patient
    - Submit your solution to the server for verification (to `/verify-solution`)
    - How the `server` verifies the submitted solution/nonce:
