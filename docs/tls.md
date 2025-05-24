@@ -134,7 +134,7 @@ Now that the reverse proxy is up and running, we need to configure it to use TLS
 
 1. Hereafter you can find a simple bash script that will generate the necessary public/private key pairs and public-key certificates (as per hierarchy shown in the first image above). **Carefully update the script with your name (e.g., `John Doe`) and domain name for the server (e.g., `doejohn.local`)**.
   
-2. Copy the updated script and save it as `generate_certs.sh` in your home directory on the reverse proxy server. Make sure to give it execution permissions by running `chmod +x generate_certs.sh`. Call it as `./generate_certs.sh` from the terminal to finally generate the required keys and certificates.
+2. Copy the updated script and save it as `generate_certs.sh` in your home directory on the reverse proxy server. Make sure to give it execution permissions by running `sudo chmod +x generate_certs.sh`. Call it as `sudo ./generate_certs.sh` from the terminal to finally generate the required keys and certificates.
 
     ```bash
       #!/bin/bash
