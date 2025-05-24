@@ -104,19 +104,19 @@ Make sure that your instance of a reverse proxy is up and running. For this, ope
 5. Save the new configuration file and test its correctness by running the following command (in the terminal in VSCode):
 
     ```bash
-    nginx -t
+    sudo nginx -t
     ```
 
 6. Disable the default pre-configured Nginx virtual host (in the terminal in VSCode) by running:
 
     ```bash
-    unlink /etc/nginx/sites-enabled/default
+    sudo unlink /etc/nginx/sites-enabled/default
     ```
 
 7. Finally, restart the NGINX reverse proxy by running:
 
     ```bash
-    service nginx reload
+    sudo service nginx reload
     ```
 
 8. To test that everything has been set up correctly, open a web browser on your local machine and test the following urls:
@@ -216,17 +216,16 @@ Now that the reverse proxy is up and running, we need to configure it to use TLS
 
 2. For this configuration to work, you should carefully set the fields marked with `<...>`. In particular mind that you properly set `<path>` to appropriate certificates and private keys. Here you can find `pwd` command useful to print the currently working directory/path.
 
-
 3. Save the new configuration file and test its correctness by running the following command:
 
     ```bash
-    nginx -t
+    sudo nginx -t
     ```
 
 4. Restart the reverse proxy by running:
 
     ```bash
-    service nginx reload
+    sudo service nginx reload
     ```
 
 5. To test that everything has been set up correctly, open a web browser on your local machine and test the following url:
@@ -282,10 +281,10 @@ The sought `flag` is located in the `/tls/protected` endpoint. This endpoint is 
 2. Save the new configuration file, test its correctness, and restart the reverse proxy:
 
     ```bash
-    nginx -t
+    sudo nginx -t
 
     # If everything is ok
-    service nginx reload
+    sudo service nginx reload
     ```
 
 3. For TLS client authentication to work, you need to import the `client.crt` certificate and its private key into your browser. For this, you need to convert the `client.crt` and `client.key` files into a format that your browser can understand. The most common format is PKCS#12, which combines the certificate and private key into a single file.
