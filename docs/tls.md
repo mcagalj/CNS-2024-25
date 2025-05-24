@@ -214,8 +214,14 @@ Now that the reverse proxy is up and running, we need to configure it to use TLS
 1. Update a reverse proxy to support TLS protocol. For this adjust the configuration file (e.g., `doejohn.local.conf`) from the initial phase as follows:
 
     ```bash
+    server {
+      listen 80;
+      server_name <yourname>.local;
+
+      return 301 https://$host$request_uri;
+    }
+
     server { # simple reverse-proxy
-        listen  80;
         listen  443 ssl;
 
         # replace <yourname> with your name :-) (notice: without underscore)
@@ -280,8 +286,14 @@ The sought `flag` is located in the `/tls/protected` endpoint. This endpoint is 
 1. To enable TLS client authentication, you need to update the NGINX configuration file (e.g., `doejohn.local.conf`) as follows:
 
    ```bash
+    server {
+      listen 80;
+      server_name <yourname>.local;
+
+      return 301 https://$host$request_uri;
+    }
+
     server { # simple reverse-proxy
-        listen  80;
         listen  443 ssl;
 
         # replace <yourname> with your name :-) (notice: without underscore)
