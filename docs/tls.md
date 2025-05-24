@@ -78,6 +78,8 @@ Make sure that your instance of a reverse proxy is up and running. For this, ope
 
    > Note: The name of the file does not matter, but it is a good practice to use your domain name as the reverse proxy can handle multiple domains/subdomains.  
 
+    > IMPORTANT: If you run into issues with permissions when creating or modifying files, you can install the following VSCode extension: [Save as Root in Remote - SSH](https://marketplace.visualstudio.com/items?itemName=yy0931.save-as-root). Alternatively, check with the professor.
+
 4. Next, copy the following template configuration to the your configuration file (e.g., to `doejohn.local.conf`) and update the fields marked with `<...>`.
 
     ```bash
