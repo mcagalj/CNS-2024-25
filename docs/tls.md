@@ -134,53 +134,67 @@ Now that the reverse proxy is up and running, we need to configure it to use TLS
 
 1. Hereafter you can find a simple bash script that will generate the necessary public/private key pairs and public-key certificates (as per hierarchy shown in the first image above). **Carefully update the script with your name (e.g., `John Doe`) and domain name for the server (e.g., `doejohn.local`)**.
   
-2. Copy the updated script and save it as `generate_certs.sh` in your home directory on the reverse proxy server. Make sure to give it execution permissions by running `sudo chmod +x generate_certs.sh`. Call it as `sudo ./generate_certs.sh` from the terminal to finally generate the required keys and certificates.
+2. Copy the updated script and save it as `generate_certs.sh` on the reverse proxy server. Make sure to give it execution permissions by running `sudo chmod +x generate_certs.sh`. Call it as `sudo ./generate_certs.sh` from the terminal to finally generate the required keys and certificates.
 
     ```bash
-      #!/bin/bash
+    #!/bin/bash
 
-      # Create directories to keep things organized
-      mkdir -p ca server client
-      cd ca
+    # Create directories to keep things organized
+    mkdir -p ca server client
+    cd ca
 
-      # Step 1: Generate the Root CA private key (RSA 2048-bit for simplicity)
-      openssl genrsa -out ca.key 2048
+    # Step 1: Generate the Root CA private key (RSA 2048-bit for simplicity)
+    openssl genrsa -out ca.key 2048
 
-      # Step 2: Create a self-signed Root CA certificate (valid for 5 years)
-      openssl req -x509 -new -nodes -key ca.key -sha256 -days 1825 \
-          -out ca.crt \
-          -subj "/C=HR/ST=Dalmatia/L=University of Split/O=FESB/CN=RootCA"
+    # Step 2: Create a self-signed Root CA certificate (valid for 5 years)
+    openssl req -x509 -new -nodes -key ca.key -sha256 -days 1825 \
+        -out ca.crt \
+        -subj "/C=HR/ST=Dalmatia/L=University of Split/O=FESB/CN=RootCA"
 
-      # Step 3: Generate the Server private key (RSA 2048-bit)
-      openssl genrsa -out ../server/server.key 2048
+    # Step 3: Generate the Server private key (RSA 2048-bit)
+    openssl genrsa -out ../server/server.key 2048
 
-      # Step 4: Create a Certificate Signing Request (CSR) for the Server
-      openssl req -new -key ../server/server.key -out ../server/server.csr \
-          -subj "/C=HR/ST=Dalmatia/L=University of Split/O=FESB/CN=doejohn.local"
+    # Step 4: Create a Certificate Signing Request (CSR) for the Server
+    openssl req -new -key ../server/server.key -out ../server/server.csr \
+        -subj "/C=HR/ST=Dalmatia/L=University of Split/O=FESB/CN=doejohn.local"
 
-      # Step 5: Sign the Server CSR with the Root CA to create the Server certificate
-      openssl x509 -req -in ../server/server.csr -CA ca.crt -CAkey ca.key \
-          -CAcreateserial -out ../server/server.crt -days 365 -sha256
+    # Step 4.5: Create an OpenSSL config file with Subject Alternative Name (SAN)
+    cat > ../server/san.cnf <<EOF
+    [ req ]
+    distinguished_name = req_distinguished_name
+    req_extensions = v3_req
+    [ req_distinguished_name ]
+    [ v3_req ]
+    subjectAltName = @alt_names
+    [ alt_names ]
+    DNS.1 = doejohn.local
+    EOF
 
-      # Step 6: Generate the Client private key (RSA 2048-bit)
-      openssl genrsa -out ../client/client.key 2048
+    # Step 5: Sign the Server CSR with the Root CA using SAN config
+    openssl x509 -req -in ../server/server.csr -CA ca.crt -CAkey ca.key \
+        -CAcreateserial -out ../server/server.crt -days 365 -sha256 \
+        -extfile ../server/san.cnf -extensions v3_req
 
-      # Step 7: Create a CSR for the Client
-      openssl req -new -key ../client/client.key -out ../client/client.csr \
-          -subj "/C=HR/ST=Dalmatia/L=University of Split/O=FESB/CN=John Doe"
+    # Step 6: Generate the Client private key (RSA 2048-bit)
+    openssl genrsa -out ../client/client.key 2048
 
-      # Step 8: Sign the Client CSR with the Root CA to create the Client certificate
-      openssl x509 -req -in ../client/client.csr -CA ca.crt -CAkey ca.key \
-          -CAcreateserial -out ../client/client.crt -days 365 -sha256
+    # Step 7: Create a CSR for the Client
+    openssl req -new -key ../client/client.key -out ../client/client.csr \
+        -subj "/C=HR/ST=Dalmatia/L=University of Split/O=FESB/CN=John Doe"
 
-      # Clean up temporary files
-      rm ../server/server.csr ../client/client.csr
+    # Step 8: Sign the Client CSR with the Root CA (no SAN needed)
+    openssl x509 -req -in ../client/client.csr -CA ca.crt -CAkey ca.key \
+        -CAcreateserial -out ../client/client.crt -days 365 -sha256
 
-      echo "Certificate hierarchy created successfully!"
-      echo "Files are in the following directories:"
-      echo "- CA: ca/ca.key, ca/ca.crt"
-      echo "- Server: server/server.key, server/server.crt"
-      echo "- Client: client/client.key, client/client.crt"
+    # Clean up temporary files
+    rm ../server/server.csr ../client/client.csr ../server/san.cnf ca.srl
+
+    echo "✅ Certificate hierarchy created successfully!"
+    echo
+    echo "📁 Files are in the following directories:"
+    echo "- CA:     ca/ca.key, ca/ca.crt"
+    echo "- Server: server/server.key, server/server.crt"
+    echo "- Client: client/client.key, client/client.crt"
     ```
 
 ### Step 4: Update the NGINX configuration to use TLS protocol
@@ -237,7 +251,15 @@ Now that the reverse proxy is up and running, we need to configure it to use TLS
 
 6. If everything is set up correctly, you should see a warning in the browser that the certificate is not trusted. This is expected because we are using RootCA certificate to sign server certificate and RootCA is currently not trusted by your browser/operating system. To fix this you should add/install RootCA to the list of trusted CA certificates in your browser/operating system.
 
-    Please check with ChatGPT how to do this for your specific browser/operating system. For example, in Chrome you can do this by going to `Settings -> Privacy and security -> Security -> Manage certificates -> Authorities` and then import the `RootCA.crt` file. After that, you should be able to access the page `https://<yourname>.local` without any warnings (possibly need to rerun Chrome). Note the lock icon in the address bar indicating a secure connection.
+    Please check with ChatGPT how to do this for your specific browser/operating system. For example, in Chrome you can do this by going to `Settings -> Privacy and security -> Security -> Manage certificates -> Authorities` and then import the `RootCA.crt` file. After that, you should be able to access the page `https://<yourname>.local` without any warnings (possibly need to rerun Chrome). Note a small padlock icon in the address bar indicating that the connection between your web browser and the website you are visiting is encrypted.
+
+    
+    <p align="center">
+    <img src="../img/https_lock_icon.png" width="auto" height="100px"/>
+    <br>
+    <em>A padlock icon in the address bar</em></em>
+    </p>
+
 
 ### Step 5: Configure TLS client authentication
 
