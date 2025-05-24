@@ -166,6 +166,8 @@ Now that the reverse proxy is up and running, we need to configure it to use TLS
     [ req_distinguished_name ]
     [ v3_req ]
     subjectAltName = @alt_names
+    keyUsage = digitalSignature, keyEncipherment
+    extendedKeyUsage = serverAuth
     [ alt_names ]
     DNS.1 = doejohn.local
     EOF
@@ -182,12 +184,22 @@ Now that the reverse proxy is up and running, we need to configure it to use TLS
     openssl req -new -key ../client/client.key -out ../client/client.csr \
         -subj "/C=HR/ST=Dalmatia/L=University of Split/O=FESB/CN=John Doe"
 
-    # Step 8: Sign the Client CSR with the Root CA (no SAN needed)
+    # Step 7.5: Create OpenSSL config file for Client with EKU
+    cat > ../client/client.cnf <<EOF
+    [ v3_req ]
+    keyUsage = digitalSignature
+    extendedKeyUsage = clientAuth
+    EOF
+
+    # Step 8: Sign the Client CSR with the Root CA and EKU
     openssl x509 -req -in ../client/client.csr -CA ca.crt -CAkey ca.key \
-        -CAcreateserial -out ../client/client.crt -days 365 -sha256
+        -CAcreateserial -out ../client/client.crt -days 365 -sha256 \
+        -extfile ../client/client.cnf -extensions v3_req
 
     # Clean up temporary files
-    rm ../server/server.csr ../client/client.csr ../server/san.cnf ca.srl
+    rm ../server/server.csr ../server/san.cnf
+    rm ../client/client.csr ../client/client.cnf
+    rm ca.srl
 
     echo "✅ Certificate hierarchy created successfully!"
     echo
@@ -316,16 +328,17 @@ The sought `flag` is located in the `/tls/protected` endpoint. This endpoint is 
    You can do this by running the following command on the reverse proxy server (from the `client` directory):
 
     ```bash
-    openssl pkcs12 -export -out client.p12 -inkey client.key -in client.crt -certfile ../ca/ca.crt
+    sudo openssl pkcs12 -export -out client.p12 -inkey client.key -in client.crt -certfile ../ca/ca.crt
     ```
 
    This will create a file named `client.p12`. You will be prompted to set a password for the file. Make sure to remember this password as you will need it when importing the certificate into your browser.
 
 4. Import the `client.p12` file into your browser. This is similar to how you imported the RootCA certificate earlier. Again, please check with ChatGPT how to do this for your specific browser/operating system. For example, in Chrome you can do this by going to `Settings -> Privacy and security -> Security -> Manage certificates -> Your certificates` and then import the `client.p12` file.
 
-5. Finally, get your `flag` by opening the following url in your browser:
-   - [ ] `https://<yourname>.local/tls/protected`
+5. Finally, get your `flag` by opening the following url in your browser `https://<yourname>.local/tls/protected`
 
    > **IMPORTANT:** **Mind the new protocol specifier: `https`**.
+
+   >**IMPORTANT:** **When installing new client or CA certificates, you may need to restart your browser for the changes to take effect.**  
 
 Congratulations! You made it 🎉
