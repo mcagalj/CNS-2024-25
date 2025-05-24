@@ -120,7 +120,7 @@ Make sure that your instance of a reverse proxy is up and running. For this, ope
     ```
 
 8. To test that everything has been set up correctly, open a web browser on your local machine and test the following urls:
-   - [ ] `http://<yourname>.local/docs`
+   - [ ] `http://<yourname>.local`
    - [ ] `http://<yourname>.local/tls/public`
    - [ ] `http://<yourname>.local/tls/protected`
 
@@ -229,13 +229,13 @@ Now that the reverse proxy is up and running, we need to configure it to use TLS
     ```
 
 5. To test that everything has been set up correctly, open a web browser on your local machine and test the following url:
-   - [ ] `https://<yourname>.local/docs`
+   - [ ] `https://<yourname>.local`
   
    > **IMPORTANT:** **Mind the new protocol specifier: `https`**.
 
 6. If everything is set up correctly, you should see a warning in the browser that the certificate is not trusted. This is expected because we are using RootCA certificate to sign server certificate and RootCA is currently not trusted by your browser/operating system. To fix this you should add/install RootCA to the list of trusted CA certificates in your browser/operating system.
 
-    Please check with ChatGPT how to do this for your specific browser/operating system. For example, in Chrome you can do this by going to `Settings -> Privacy and security -> Security -> Manage certificates -> Authorities` and then import the `RootCA.crt` file. After that, you should be able to access the page `https://<yourname>.local/docs` without any warnings (possibly need to rerun Chrome). Note the lock icon in the address bar indicating a secure connection.
+    Please check with ChatGPT how to do this for your specific browser/operating system. For example, in Chrome you can do this by going to `Settings -> Privacy and security -> Security -> Manage certificates -> Authorities` and then import the `RootCA.crt` file. After that, you should be able to access the page `https://<yourname>.local` without any warnings (possibly need to rerun Chrome). Note the lock icon in the address bar indicating a secure connection.
 
 ### Step 5: Configure TLS client authentication
 
