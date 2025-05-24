@@ -305,4 +305,4 @@ The sought `flag` is located in the `/tls/protected` endpoint. This endpoint is 
 
    > **IMPORTANT:** **Mind the new protocol specifier: `https`**.
 
-Congratulations! You made it to the end and earned your `flag` and 10% of the final grade 🎉
+Congratulations! You made it 🎉
