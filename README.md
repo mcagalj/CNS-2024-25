@@ -18,5 +18,4 @@ Ultimately, you will demonstrate possession of a single **final** flag to earn f
 - [Lab 6: Hybrid/envelope encryption using RSA and AES](docs/envelope_encryption.md)
 - [Lab 7: Establishing secure channel using asymmetric cryptography](docs/secure_channel.md)
 - [Lab 8: Some practical uses of cryptographic hash functions](docs/practical_hash.md)
-- [Lab 9: TBA]
-- [Lab 10: TBA]
+- [Lab 9: TLS protocol, certificates and reverse proxy](docs/tls.md)
