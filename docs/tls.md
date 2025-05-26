@@ -300,8 +300,8 @@ The sought `flag` is located in the `/tls/protected` endpoint. This endpoint is 
         server_name  <yourname>.local;
 
         # server certificate and private key
-        ssl_certificate            /<path>/server.crt
-        ssl_certificate_key        /<path>/server.key
+        ssl_certificate            /<path>/server.crt;
+        ssl_certificate_key        /<path>/server.key;
         ssl_protocols              TLSv1.2;
         ssl_prefer_server_ciphers  on;
         ssl_ciphers                HIGH:!aNULL:!MD5;
